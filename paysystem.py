@@ -72,4 +72,57 @@ myresult = mycursor.fetchall()
 for x in myresult:
     print (x)
 
+# sql = ("Select * from EmployeeIn order by Name")
+mycursor.execute("Select * from EmployeeIn order by Name")
+myresult = mycursor.fetchall()
+for x in myresult:
+    print (x)
+
+mycursor.execute("Select distinct(EmpId) from Salary where Pay = (Select max(Pay) from Salary) ")
+myresult = mycursor.fetchall()
+for x in myresult:
+    print(x)
+mycursor.execute("select Name , Department from EmployeeIn where EmpId = 8 ")
+myresult = mycursor.fetchall()
+for x in myresult:
+    print(x)
+mycursor.execute("Select sum(pay) from Salary ")
+myresult = mycursor.fetchall()
+for x in myresult:
+    print(x)
+
+mycursor.execute("Select distinct(EmpId), pay from salary order by pay desc limit 3")
+myresult = mycursor.fetchall()
+for x in myresult:
+    print(x)
+mycursor.execute("Delete  from Salary where RevisedDate is NULL")
+mydb.commit()
+
+mycursor.execute("Select * from Salary order by RevisedDate desc")
+myresult = mycursor.fetchall()
+for x in myresult:
+    print(x)
+mycursor.execute("Select EmployeeIn.Name,EmployeeIn.Department, Salary.Pay, Salary.RevisedDate "
+                 "from EmployeeIn join Salary on EmployeeIn.EmpId = Salary.EmpId")
+myresult = mycursor.fetchall()
+for x in myresult:
+    print(x)
+
+# mycursor.execute("create view CompleteData as Select EmployeeIn.Name,EmployeeIn.Department, "
+#                  "Salary.Pay, "
+#                  "Salary.RevisedDate "
+#                  "from EmployeeIn "
+#                  "join Salary on EmployeeIn.EmpId = Salary.EmpId ")
+# myresult = mycursor.fetchall()
+# for x in myresult:
+#     print(x)
+mycursor.execute("select * from CompleteData")
+myresult = mycursor.fetchall()
+for x in myresult:
+    print(x)
+
+mycursor.execute("select name , pay from CompleteData where pay = (select max(pay) from CompleteData) ")
+myresult = mycursor.fetchall()
+for x in myresult:
+    print(x)
 
