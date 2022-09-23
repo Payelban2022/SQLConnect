@@ -15,7 +15,7 @@ print(mydb)
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE DATABASE PaySystem")
+# mycursor.execute("CREATE DATABASE PaySystem")
 
 
 
@@ -26,16 +26,16 @@ mycursor.execute("SHOW DATABASES")
 for x in mycursor:
   print(x)
 
-mycursor.execute("CREATE TABLE PaySystem.employee (name VARCHAR(255), department VARCHAR(255), pay int)")
-print("database data")
-mycursor.execute("USE PaySystem")
-mycursor.execute("SHOW TABLES")
+# mycursor.execute("CREATE TABLE PaySystem.employee (name VARCHAR(255), department VARCHAR(255), pay int)")
+# print("database data")
+# mycursor.execute("USE PaySystem")
+# mycursor.execute("SHOW TABLES")
 
 for x in mycursor:
   print(x)
 
 mycursor.execute("select * from PaySystem.employee")
-mycursor.execute("insert into employee (name, department, pay) values ('Payel Banerjee', 'Bill', '500')")
+
 
 sql = "INSERT INTO PaySystem.employee (name, department, pay) VALUES (%s, %s, %s)"
 val = ("John", "Bill", "500")
@@ -43,6 +43,7 @@ val = ("John", "Bill", "500")
 
 for i in range(600,700):
   val = ("John", "Bill", str(i))
+
   mycursor.execute(sql, val)
 mydb.commit()
 
@@ -61,11 +62,11 @@ mycursor.execute("select name, pay from employee where pay = (select max(pay) fr
 for x in mycursor:
   print(x)
 
-mycursor.execute("Create database EmployeeSystem")
-mycursor.execute("Create table employeedata  (id int primary key auto_increment, name varchar(50), year_join  date)")
-mycursor.execute("Show tables")
-for x in mycursor:
-  print(x)
+# mycursor.execute("Create database EmployeeSystem")
+# mycursor.execute("Create table employeedata  (id int primary key auto_increment, name varchar(50), year_join  date)")
+# mycursor.execute("Show tables")
+# for x in mycursor:
+#   print(x)
 
 sql = "INSERT INTO employeedata(name, year_join)  values(%s,%s)"
 val = [('John','2020-01-12'),('Peter', '2020-01-01')]
